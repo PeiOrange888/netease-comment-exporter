@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "description": "Local exporter for public NetEase Cloud Music comments",
+  "license": "MIT",
+  "author": "PeiOrange888",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PeiOrange888/netease-comment-exporter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PeiOrange888/netease-comment-exporter/issues"
+  },
+  "homepage": "https://github.com/PeiOrange888/netease-comment-exporter#readme",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
