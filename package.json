@@ -1,0 +1,19 @@
+{
+  "name": "netease-comment-exporter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local exporter for public NetEase Cloud Music comments",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@neteasecloudmusicapienhanced/api": "4.37.0",
+    "express": "5.1.0",
+    "lucide-static": "latest"
+  }
+}

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>云评导出</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="/icons/message-circle.svg" alt="">
+          </span>
+          <div>
+            <h1>云评导出</h1>
+            <p>网易云音乐公开评论</p>
+          </div>
+        </div>
+        <div class="local-status">
+          <span class="status-dot" aria-hidden="true"></span>
+          本地服务
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <section class="control-band" aria-labelledby="source-heading">
+        <div class="source-controls">
+          <h2 id="source-heading">歌曲</h2>
+          <form id="song-form" class="song-form">
+            <label class="field field-grow" for="song-input">
+              <span>歌曲链接或 ID</span>
+              <input
+                id="song-input"
+                name="song"
+                type="text"
+                autocomplete="off"
+                placeholder="https://music.163.com/song?id=..."
+                required
+              >
+            </label>
+            <button id="lookup-button" class="button button-secondary" type="submit">
+              <img src="/icons/search.svg" alt="">
+              读取
+            </button>
+          </form>
+
+          <div class="collection-controls">
+            <fieldset class="sort-fieldset">
+              <legend>排序</legend>
+              <div class="segmented-control">
+                <label>
+                  <input type="radio" name="sort" value="recommended" checked>
+                  <span><img src="/icons/sparkles.svg" alt="">推荐</span>
+                </label>
+                <label>
+                  <input type="radio" name="sort" value="hot">
+                  <span><img src="/icons/flame.svg" alt="">热门</span>
+                </label>
+                <label>
+                  <input type="radio" name="sort" value="newest">
+                  <span><img src="/icons/clock-3.svg" alt="">最新</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="field count-field" for="count-input">
+              <span>数量</span>
+              <input id="count-input" type="number" min="1" max="5000" step="20" value="200">
+            </label>
+
+            <button id="start-button" class="button button-primary" type="button" disabled>
+              <img src="/icons/play.svg" alt="">
+              开始采集
+            </button>
+          </div>
+        </div>
+
+        <article id="song-summary" class="song-summary" aria-live="polite">
+          <div class="cover-shell">
+            <img id="song-cover" class="song-cover" alt="" hidden>
+            <img id="cover-placeholder" class="cover-placeholder" src="/icons/music-2.svg" alt="">
+          </div>
+          <div class="song-copy">
+            <span id="song-state" class="eyebrow">等待读取</span>
+            <h2 id="song-title">尚未选择歌曲</h2>
+            <p id="song-artist">-</p>
+            <p id="song-album" class="song-album">-</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="task-band" aria-labelledby="task-heading">
+        <div class="task-heading-row">
+          <div>
+            <h2 id="task-heading">采集任务</h2>
+            <p id="task-meta">暂无任务</p>
+          </div>
+          <div class="task-actions">
+            <button id="cancel-button" class="icon-button" type="button" title="取消采集" hidden>
+              <img src="/icons/square.svg" alt="">
+            </button>
+            <button id="csv-button" class="button button-secondary" type="button" hidden>
+              <img src="/icons/file-spreadsheet.svg" alt="">
+              CSV
+            </button>
+            <button id="json-button" class="button button-secondary" type="button" hidden>
+              <img src="/icons/file-json.svg" alt="">
+              JSON
+            </button>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+
+        <div id="task-status" class="task-status" role="status">
+          <span class="status-icon"><img src="/icons/inbox.svg" alt=""></span>
+          <span>等待新任务</span>
+        </div>
+      </section>
+
+      <section class="results-band" aria-labelledby="results-heading">
+        <div class="results-heading-row">
+          <h2 id="results-heading">评论</h2>
+          <span id="result-count">0 条</span>
+        </div>
+        <div class="table-shell">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">评论内容</th>
+                <th scope="col">用户</th>
+                <th scope="col">点赞</th>
+                <th scope="col">时间</th>
+              </tr>
+            </thead>
+            <tbody id="comments-body">
+              <tr class="empty-row">
+                <td colspan="4">暂无评论</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="alert" hidden></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
